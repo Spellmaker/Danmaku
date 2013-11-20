@@ -1,4 +1,4 @@
-package de.spellmaker.patterns.bullets;
+package de.spellmaker.danmaku.patterns.bullets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

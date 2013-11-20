@@ -1,4 +1,4 @@
-package de.spellmaker.patterns;
+package de.spellmaker.danmaku.patterns;
 
 import com.badlogic.gdx.math.Rectangle;
 

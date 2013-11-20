@@ -1,11 +1,11 @@
-package de.spellmaker.patterns;
+package de.spellmaker.danmaku.patterns;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Rectangle;
 
 import de.spellmaker.danmaku.DataManager;
-import de.spellmaker.patterns.bullets.BasicBullet;
+import de.spellmaker.danmaku.patterns.bullets.BasicBullet;
 
 public class BasicPattern implements Pattern {
 	private BasicBullet bullet;

@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
 import de.spellmaker.danmaku.DataManager;
-import de.spellmaker.patterns.BasicPattern;
-import de.spellmaker.patterns.Pattern;
+import de.spellmaker.danmaku.patterns.BasicPattern;
+import de.spellmaker.danmaku.patterns.Pattern;
 
 public class LevelScreen implements Screen{
 	private Texture background;
