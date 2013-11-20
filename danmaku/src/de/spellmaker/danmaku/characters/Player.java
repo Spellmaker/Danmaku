@@ -68,9 +68,9 @@ public class Player {
 	
 	public void render(float delta){
 		SpriteBatch batch = DataManager.getManager().batch;
-		batch.draw(sprite, hitbox.getX(), hitbox.getY(), 32, 64);
-		if(Options.showHitboxes) hitbox.render(batch);
-		
-		hitbox.render(DataManager.getManager().batch);
+		//batch.draw(sprite, hitbox.getX(), hitbox.getY(), 32, 64);
+		if(Options.showHitboxes){
+			hitbox.render(batch);
+		}
 	}
 }

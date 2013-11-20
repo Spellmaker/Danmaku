@@ -53,8 +53,8 @@ public class LevelScreen implements Screen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		DataManager.getManager().batch.setProjectionMatrix(camera.combined);
+		DataManager.getManager().shape.setProjectionMatrix(camera.combined);
 		DataManager.getManager().batch.begin();
-		
 		//render player
 		this.player.render(delta);
 		//render patterns

@@ -1,7 +1,12 @@
 package de.spellmaker.danmaku.characters;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+
+import de.spellmaker.danmaku.DataManager;
 
 public class CollisionObject {
 	private Rectangle hitbox;
@@ -46,6 +51,12 @@ public class CollisionObject {
 	}
 	
 	public void render(SpriteBatch batch){
+		ShapeRenderer shape = DataManager.getManager().shape;
+		shape.setColor(Color.RED);
+		shape.begin(ShapeType.FilledRectangle);
+		shape.filledRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+		shape.end();
+		
 		//TODO: draw hitbox
 	}
 }

@@ -8,7 +8,6 @@ public class GraphicsManager {
 	public Texture characters;
 	public Texture levelbackground;
 	
-	
 	public GraphicsManager(){
 		bullets = new Texture(Gdx.files.internal("images\\bullets.png"));
 		characters = new Texture(Gdx.files.internal("images\\characters.png"));
