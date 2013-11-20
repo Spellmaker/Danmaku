@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 import de.spellmaker.danmaku.DataManager;
 
-public class CollisionObject {
+public class CollisionObject {	
 	private Rectangle hitbox;
 	private float x;
 	private float y;
@@ -51,12 +51,12 @@ public class CollisionObject {
 	}
 	
 	public void render(SpriteBatch batch){
+		batch.end();//disable spritebatch, otherwise this won't be drawn correctly
 		ShapeRenderer shape = DataManager.getManager().shape;
-		shape.setColor(Color.RED);
+		shape.setColor(Color.BLUE);
 		shape.begin(ShapeType.FilledRectangle);
 		shape.filledRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 		shape.end();
-		
-		//TODO: draw hitbox
+		batch.begin();
 	}
 }

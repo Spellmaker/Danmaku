@@ -12,7 +12,7 @@ public class Player {
 	
 	public Player(){
 		int middle = DataManager.leftborder + (DataManager.rightborder - DataManager.leftborder) / 2;
-		hitbox = new CollisionObject(middle, 50, 8, 16, 24, 16);
+		hitbox = new CollisionObject(middle, 50, 8, 16, 16, 24);
 		sprite = new TextureRegion(DataManager.getManager().graphics.characters, 0, 0, 32, 64);
 	}
 	
@@ -21,18 +21,10 @@ public class Player {
 	}
 	
 	public void moveLeft(float delta){
-		/*hitbox.setX(hitbox.getX() - delta * Options.player_movspeed);
-		if(hitbox.getX() < DataManager.leftborder){
-			hitbox.setX(DataManager.leftborder);
-		}*/
 		move(delta, -1, 0);
 	}
 	
 	public void moveRight(float delta){
-		/*hitbox.setX(hitbox.getX() + delta * Options.player_movspeed);
-		if(hitbox.getX() > DataManager.rightborder){
-			hitbox.setX(DataManager.rightborder);
-		}*/
 		move(delta, 1, 0);
 	}
 	
@@ -68,7 +60,7 @@ public class Player {
 	
 	public void render(float delta){
 		SpriteBatch batch = DataManager.getManager().batch;
-		//batch.draw(sprite, hitbox.getX(), hitbox.getY(), 32, 64);
+		batch.draw(sprite, hitbox.getX(), hitbox.getY(), 32, 64);
 		if(Options.showHitboxes){
 			hitbox.render(batch);
 		}
