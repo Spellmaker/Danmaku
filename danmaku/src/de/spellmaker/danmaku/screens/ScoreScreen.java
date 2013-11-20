@@ -1,4 +1,4 @@
-package screens;
+package de.spellmaker.danmaku.screens;
 
 import com.badlogic.gdx.Screen;
 

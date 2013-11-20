@@ -1,21 +1,22 @@
-package screens;
+package de.spellmaker.danmaku.screens;
+
+import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.me.mygdxgame.Danmaku;
+
+import de.spellmaker.danmaku.DataManager;
 
 public class LevelScreen implements Screen{
-	private Danmaku owner;
 	private Texture background;
 	private OrthographicCamera camera;
+	private ArrayList<Pattern> patterns;
 	
-	public LevelScreen(Danmaku owner){
-		this.owner = owner;
-		background = new Texture(Gdx.files.internal("backgrounds\\game_back.png"));
+	public LevelScreen(){
+		background = DataManager.getManager().graphics.levelbackground;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1600, 960);
 	}
@@ -26,11 +27,13 @@ public class LevelScreen implements Screen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 	
 		camera.update();
-		owner.batch.setProjectionMatrix(camera.combined);
-	
-		owner.batch.begin();
-		owner.batch.draw(background, 0, 0, 0, 0, 1600, 960);
-		owner.batch.end();
+		DataManager.getManager().batch.setProjectionMatrix(camera.combined);
+		DataManager.getManager().batch.begin();
+		//render patterns
+		this.renderPatterns(delta);
+		//draw background
+		DataManager.getManager().batch.draw(background, 0, 0, 0, 0, 1600, 960);
+		DataManager.getManager().batch.end();
 	}
 
 	@Override
@@ -69,4 +72,17 @@ public class LevelScreen implements Screen{
 		
 	}
 
+	public void addPattern(Pattern p){
+		this.patterns.add(p);
+	}
+	
+	private void renderPatterns(float f){
+		for(int i = patterns.size() - 1; i >= 0; i--){
+			Pattern p = patterns.get(i);
+			if(p.render(f)){
+				patterns.remove(i);
+			}
+			
+		}
+	}
 }

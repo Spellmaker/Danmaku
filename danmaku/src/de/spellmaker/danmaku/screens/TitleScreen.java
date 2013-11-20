@@ -1,10 +1,11 @@
-package screens;
+package de.spellmaker.danmaku.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.me.mygdxgame.Danmaku;
+
+import de.spellmaker.danmaku.Danmaku;
 
 public class TitleScreen implements Screen {
 

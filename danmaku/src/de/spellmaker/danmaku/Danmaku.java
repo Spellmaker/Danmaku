@@ -1,11 +1,10 @@
-package com.me.mygdxgame;
-
-import screens.LevelScreen;
-import screens.TitleScreen;
+package de.spellmaker.danmaku;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import de.spellmaker.danmaku.screens.LevelScreen;
 
 public class Danmaku extends Game {
 	public SpriteBatch batch;
@@ -14,10 +13,7 @@ public class Danmaku extends Game {
 	
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-		font = new BitmapFont();
-		font.scale(2);
-		this.setScreen(new LevelScreen(this));
+		this.setScreen(new LevelScreen());
 	}
 
 	@Override
