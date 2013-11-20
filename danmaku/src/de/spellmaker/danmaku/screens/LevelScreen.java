@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
 import de.spellmaker.danmaku.DataManager;
+import de.spellmaker.patterns.BasicPattern;
+import de.spellmaker.patterns.Pattern;
 
 public class LevelScreen implements Screen{
 	private Texture background;
@@ -19,16 +21,22 @@ public class LevelScreen implements Screen{
 		background = DataManager.getManager().graphics.levelbackground;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1600, 960);
+		
+		patterns = new ArrayList<Pattern>();
+	
+		this.addPattern(new BasicPattern());
 	}
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-	
+		
 		camera.update();
 		DataManager.getManager().batch.setProjectionMatrix(camera.combined);
 		DataManager.getManager().batch.begin();
+		//DataManager.getManager().batch.enableBlending();
+		//DataManager.getManager().batch.setBlendFunction(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		//render patterns
 		this.renderPatterns(delta);
 		//draw background

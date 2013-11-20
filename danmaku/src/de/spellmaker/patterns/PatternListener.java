@@ -1,4 +1,5 @@
-package de.spellmaker.danmaku.screens;
+package de.spellmaker.patterns;
+
 
 /**
  * Listener for pattern events

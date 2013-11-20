@@ -1,4 +1,7 @@
-package de.spellmaker.danmaku.screens;
+package de.spellmaker.patterns;
+
+import com.badlogic.gdx.math.Rectangle;
+
 
 /**
  * Basic pattern interface
@@ -42,4 +45,11 @@ public interface Pattern {
 	 * @return The pattern id
 	 */
 	public int getId();
+	/**
+	 * Finds out, if a part of the pattern collides with
+	 * the given rectangle
+	 * @param rec The bounding rectangle
+	 * @return
+	 */
+	public boolean collidesWith(Rectangle rec);
 }
