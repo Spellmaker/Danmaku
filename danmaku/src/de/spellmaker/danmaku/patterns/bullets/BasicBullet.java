@@ -2,31 +2,32 @@ package de.spellmaker.danmaku.patterns.bullets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
-
 import de.spellmaker.danmaku.DataManager;
+import de.spellmaker.danmaku.Options;
+import de.spellmaker.danmaku.characters.CollisionObject;
 
 public class BasicBullet implements Bullet {
 	private TextureRegion image;
-	private Rectangle hitbox;
+	private CollisionObject hitbox;
 	
 	public BasicBullet(int x, int y){
-		hitbox = new Rectangle(x + 8, y + 8, 32 - 16, 32 - 16);
+		hitbox = new CollisionObject(x, y, 8, 8, 16, 16);
 		image = new TextureRegion(DataManager.getManager().graphics.bullets, 0, 0, 32, 32);
 	}
 	
 	@Override
 	public boolean render(float d) {
-		hitbox.y -= d * 50;
+		hitbox.setY(hitbox.getY() - d * 50);
 		
 		SpriteBatch batch = DataManager.getManager().batch;
-		batch.draw(image, hitbox.x - 8, hitbox.y - 8);
-		return hitbox.y <= 0;
+		batch.draw(image, hitbox.getX(), hitbox.getY());
+		if(Options.showHitboxes) this.hitbox.render(batch);
+		return hitbox.getY() <= 0;
 	}
 
 	@Override
-	public boolean collidesWith(Rectangle rec) {
-		return rec.overlaps(rec);
+	public boolean collidesWith(CollisionObject rec) {
+		return hitbox.collidesWith(rec);
 	}
 
 }

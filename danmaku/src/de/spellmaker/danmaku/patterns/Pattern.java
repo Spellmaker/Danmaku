@@ -1,6 +1,6 @@
 package de.spellmaker.danmaku.patterns;
 
-import com.badlogic.gdx.math.Rectangle;
+import de.spellmaker.danmaku.characters.CollisionObject;
 
 
 /**
@@ -48,8 +48,8 @@ public interface Pattern {
 	/**
 	 * Finds out, if a part of the pattern collides with
 	 * the given rectangle
-	 * @param rec The bounding rectangle
+	 * @param rec The bounding collision object
 	 * @return
 	 */
-	public boolean collidesWith(Rectangle rec);
+	public boolean collidesWith(CollisionObject rec);
 }

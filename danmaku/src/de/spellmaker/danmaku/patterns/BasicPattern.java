@@ -2,9 +2,8 @@ package de.spellmaker.danmaku.patterns;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.math.Rectangle;
-
 import de.spellmaker.danmaku.DataManager;
+import de.spellmaker.danmaku.characters.CollisionObject;
 import de.spellmaker.danmaku.patterns.bullets.BasicBullet;
 
 public class BasicPattern implements Pattern {
@@ -47,7 +46,7 @@ public class BasicPattern implements Pattern {
 	}
 
 	@Override
-	public boolean collidesWith(Rectangle rec) {
+	public boolean collidesWith(CollisionObject rec) {
 		return bullet.collidesWith(rec);
 	}
 

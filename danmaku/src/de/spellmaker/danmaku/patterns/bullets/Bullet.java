@@ -1,6 +1,7 @@
 package de.spellmaker.danmaku.patterns.bullets;
 
-import com.badlogic.gdx.math.Rectangle;
+
+import de.spellmaker.danmaku.characters.CollisionObject;
 
 /**
  * Basic bullet interface
@@ -20,5 +21,5 @@ public interface Bullet {
 	 * @param rec The bounding box for which collisions should be detected
 	 * @return True, if there is a collision with this bullet
 	 */
-	public boolean collidesWith(Rectangle rec);
+	public boolean collidesWith(CollisionObject rec);
 }

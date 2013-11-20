@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
 import de.spellmaker.danmaku.DataManager;
+import de.spellmaker.danmaku.characters.Player;
 import de.spellmaker.danmaku.patterns.BasicPattern;
 import de.spellmaker.danmaku.patterns.Pattern;
 
@@ -16,6 +17,7 @@ public class LevelScreen implements Screen{
 	private Texture background;
 	private OrthographicCamera camera;
 	private ArrayList<Pattern> patterns;
+	private Player player;
 	
 	public LevelScreen(){
 		background = DataManager.getManager().graphics.levelbackground;
@@ -25,6 +27,8 @@ public class LevelScreen implements Screen{
 		patterns = new ArrayList<Pattern>();
 	
 		this.addPattern(new BasicPattern());
+		
+		player = new Player();
 	}
 	
 	@Override
