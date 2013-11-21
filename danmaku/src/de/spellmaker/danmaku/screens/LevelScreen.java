@@ -69,10 +69,10 @@ public class LevelScreen implements Screen{
 	private void renderPatterns(float f){
 		for(int i = patterns.size() - 1; i >= 0; i--){
 			Pattern p = patterns.get(i);
-			if(p.render(f)){
+			p.render(f);
+			if(!p.isAlive()){
 				patterns.remove(i);
 			}
-			
 		}
 	}
 	

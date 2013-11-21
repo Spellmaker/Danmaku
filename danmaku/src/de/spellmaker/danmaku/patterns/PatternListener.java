@@ -12,4 +12,10 @@ public interface PatternListener {
 	 * @param p The pattern which has ended
 	 */
 	public void patternEnded(Pattern p);
+	/**
+	 * Notifies the listener of the creation of a
+	 * new pattern
+	 * @param p The created pattern
+	 */
+	public void patternCreated(Pattern p);
 }
