@@ -43,8 +43,8 @@ public class Player {
 		hitbox.setX(hitbox.getX() + v * delta * dx * Options.player_movspeed);
 		hitbox.setY(hitbox.getY() + v * delta * dy * Options.player_movspeed);
 		
-		if(hitbox.getX() > DataManager.rightborder){
-			hitbox.setX(DataManager.rightborder);
+		if(hitbox.getX() > DataManager.rightborder - 32){
+			hitbox.setX(DataManager.rightborder - 32);
 		}
 		else if(hitbox.getX() < DataManager.leftborder){
 			hitbox.setX(DataManager.leftborder);
@@ -61,8 +61,9 @@ public class Player {
 	public void render(float delta){
 		SpriteBatch batch = DataManager.getManager().batch;
 		batch.draw(sprite, hitbox.getX(), hitbox.getY(), 32, 64);
-		if(Options.showHitboxes){
-			hitbox.render(batch);
-		}
+	}
+	
+	public void renderHitbox(){
+			hitbox.render();
 	}
 }

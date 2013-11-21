@@ -14,9 +14,13 @@ public interface Pattern {
 	 * Draw the pattern on screen
 	 * this will draw all bullets and effects belonging to this pattern
 	 * @param d The time passed since the last render
-	 * @return True, if the pattern doesnt contain any more bullets
+	 * @return True, if the pattern doesn't contain any more bullets
 	 */
 	public boolean render(float d);
+	/**
+	 * Render hitboxes of all bullets in this pattern
+	 */
+	public void renderHitboxes();
 	/**
 	 * Method to obtain the name of the pattern for display purposes
 	 * @return The name of the pattern (if it has one) or an empty string

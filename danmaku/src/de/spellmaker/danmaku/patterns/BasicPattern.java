@@ -50,4 +50,9 @@ public class BasicPattern implements Pattern {
 		return bullet.collidesWith(rec);
 	}
 
+	@Override
+	public void renderHitboxes() {
+		bullet.renderHitbox();
+	}
+
 }

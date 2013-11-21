@@ -61,8 +61,27 @@ public class LevelScreen implements Screen{
 		this.renderPatterns(delta);
 		//draw background
 		DataManager.getManager().batch.draw(background, 0, 0, 0, 0, Options.screen_width, Options.screen_height);
-		
 		DataManager.getManager().batch.end();
+		//render hitboxes if applicable
+		if(Options.showHitboxes) renderHitboxes();
+	}
+	
+	private void renderPatterns(float f){
+		for(int i = patterns.size() - 1; i >= 0; i--){
+			Pattern p = patterns.get(i);
+			if(p.render(f)){
+				patterns.remove(i);
+			}
+			
+		}
+	}
+	
+	private void renderHitboxes(){
+		for(int i = patterns.size() - 1; i >= 0; i--){
+			Pattern p = patterns.get(i);
+			p.renderHitboxes();
+		}
+		player.renderHitbox();
 	}
 
 	@Override
@@ -103,15 +122,5 @@ public class LevelScreen implements Screen{
 
 	public void addPattern(Pattern p){
 		this.patterns.add(p);
-	}
-	
-	private void renderPatterns(float f){
-		for(int i = patterns.size() - 1; i >= 0; i--){
-			Pattern p = patterns.get(i);
-			if(p.render(f)){
-				patterns.remove(i);
-			}
-			
-		}
 	}
 }

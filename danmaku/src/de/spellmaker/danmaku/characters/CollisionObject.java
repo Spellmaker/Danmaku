@@ -1,7 +1,6 @@
 package de.spellmaker.danmaku.characters;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
@@ -50,13 +49,11 @@ public class CollisionObject {
 		return (this.hitbox.overlaps(co.hitbox));
 	}
 	
-	public void render(SpriteBatch batch){
-		batch.end();//disable spritebatch, otherwise this won't be drawn correctly
+	public void render(){
 		ShapeRenderer shape = DataManager.getManager().shape;
 		shape.setColor(Color.BLUE);
 		shape.begin(ShapeType.FilledRectangle);
 		shape.filledRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 		shape.end();
-		batch.begin();
 	}
 }

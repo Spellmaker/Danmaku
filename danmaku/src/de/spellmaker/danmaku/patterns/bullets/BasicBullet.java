@@ -3,7 +3,6 @@ package de.spellmaker.danmaku.patterns.bullets;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.spellmaker.danmaku.DataManager;
-import de.spellmaker.danmaku.Options;
 import de.spellmaker.danmaku.characters.CollisionObject;
 
 public class BasicBullet implements Bullet {
@@ -21,7 +20,6 @@ public class BasicBullet implements Bullet {
 		
 		SpriteBatch batch = DataManager.getManager().batch;
 		batch.draw(image, hitbox.getX(), hitbox.getY());
-		if(Options.showHitboxes) this.hitbox.render(batch);
 		return hitbox.getY() <= 0;
 	}
 
@@ -30,4 +28,7 @@ public class BasicBullet implements Bullet {
 		return hitbox.collidesWith(rec);
 	}
 
+	public void renderHitbox(){
+		this.hitbox.render();
+	}
 }
