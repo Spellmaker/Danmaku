@@ -17,7 +17,7 @@ public class StarBurst implements Bullet, PatternListener {
 		Vector2 vec = new Vector2(200, 0);
 		for(int i = 0; i < 360; i += 45){
 			vec.setAngle(i);
-			SpreadBullet sb = new SpreadBullet(x, y, (int)vec.x, (int)vec.y, 5, 15);
+			SpreadBullet sb = new SpreadBullet(x, y, (int)vec.x, (int)vec.y, 5, 10);
 			sb.addListener(this);
 			bullets.add(sb);
 		}
@@ -31,7 +31,6 @@ public class StarBurst implements Bullet, PatternListener {
 			if(!current.isAlive()){
 				bullets.remove(i);
 				i--;
-				if(i < 0) break;
 			}
 		}
 	}
