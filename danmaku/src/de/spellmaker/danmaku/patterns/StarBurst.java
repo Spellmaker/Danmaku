@@ -58,11 +58,6 @@ public class StarBurst implements Bullet, PatternListener {
 	}
 
 	@Override
-	public void patternEnded(Pattern p) {
-		this.bullets.remove(p);
-	}
-
-	@Override
 	public void patternCreated(Pattern p) {
 		this.bullets.add(p);
 		p.addListener(this);

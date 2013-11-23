@@ -64,11 +64,6 @@ public class BasicPattern implements Pattern, PatternListener {
 	}
 
 	@Override
-	public int getId() {
-		return 0;
-	}
-
-	@Override
 	public boolean collidesWith(CollisionObject rec) {
 		for(int i = 0; i < pattern.size(); i++) if(pattern.get(i).collidesWith(rec)) return true;
 		return false;
@@ -85,12 +80,6 @@ public class BasicPattern implements Pattern, PatternListener {
 			if(pattern.get(i).isAlive()) return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void patternEnded(Pattern p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

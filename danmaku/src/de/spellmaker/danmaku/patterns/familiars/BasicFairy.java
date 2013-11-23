@@ -110,9 +110,4 @@ public class BasicFairy implements Pattern {
 	public void removeListener(PatternListener pl) {
 		this.listeners.remove(pl);
 	}
-
-	@Override
-	public int getId() {
-		return 0;
-	}
 }

@@ -64,9 +64,4 @@ public class BasicBullet implements Pattern {
 	public void removeListener(PatternListener pl) {
 		//do nothing
 	}
-
-	@Override
-	public int getId() {
-		return 0;
-	}
 }

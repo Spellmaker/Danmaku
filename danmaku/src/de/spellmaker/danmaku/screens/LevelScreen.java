@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.Texture;
 import de.spellmaker.danmaku.DataManager;
 import de.spellmaker.danmaku.Options;
 import de.spellmaker.danmaku.characters.Player;
-import de.spellmaker.danmaku.patterns.BasicPattern;
 import de.spellmaker.danmaku.patterns.Pattern;
+import de.spellmaker.danmaku.patterns.SndBasicPattern;
 
 public class LevelScreen implements Screen{
 	private Texture background;
@@ -32,7 +32,7 @@ public class LevelScreen implements Screen{
 		
 		patterns = new ArrayList<Pattern>();
 	
-		this.addPattern(new BasicPattern());
+		this.addPattern(new SndBasicPattern());
 		
 		player = new Player();
 	}

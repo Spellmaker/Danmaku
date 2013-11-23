@@ -46,14 +46,6 @@ public interface Pattern {
 	 */
 	public void removeListener(PatternListener pl);
 	/**
-	 * Method to find out the (unique) id of this pattern.
-	 * This method should be implemented in a way, that the
-	 * returned id is unique enough to ensure that listeners
-	 * can find out which pattern just ended
-	 * @return The pattern id
-	 */
-	public int getId();
-	/**
 	 * Finds out, if a part of the pattern collides with
 	 * the given rectangle
 	 * @param rec The bounding collision object
