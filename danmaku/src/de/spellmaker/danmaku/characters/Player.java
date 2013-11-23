@@ -66,4 +66,12 @@ public class Player {
 	public void renderHitbox(){
 			hitbox.render();
 	}
+	
+	public float getX(){
+		return this.hitbox.getX();
+	}
+	
+	public float getY(){
+		return this.hitbox.getY();
+	}
 }

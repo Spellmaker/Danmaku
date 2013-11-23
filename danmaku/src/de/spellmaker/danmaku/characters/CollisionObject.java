@@ -14,10 +14,10 @@ public class CollisionObject {
 	private int hbx;
 	private int hby;
 	
-	public CollisionObject(int x, int y, int hbx, int hby, int hbw, int hbh){
-		this.x = x;
-		this.y = y;
-		this.hitbox = new Rectangle(x + hbx, y + hby, hbw, hbh);
+	public CollisionObject(float f, float g, int hbx, int hby, int hbw, int hbh){
+		this.x = f;
+		this.y = g;
+		this.hitbox = new Rectangle(f + hbx, g + hby, hbw, hbh);
 		this.hbx = hbx;
 		this.hby = hby;
 	}

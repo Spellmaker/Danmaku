@@ -19,7 +19,11 @@ public class LevelScreen implements Screen{
 	private Texture background;
 	private OrthographicCamera camera;
 	private ArrayList<Pattern> patterns;
-	private Player player;
+	private static Player player;
+	
+	public static Player getPlayer(){
+		return player;
+	}
 	
 	public LevelScreen(){
 		background = DataManager.getManager().graphics.levelbackground;
@@ -56,7 +60,7 @@ public class LevelScreen implements Screen{
 		DataManager.getManager().shape.setProjectionMatrix(camera.combined);
 		DataManager.getManager().batch.begin();
 		//render player
-		this.player.render(delta);
+		player.render(delta);
 		//render patterns
 		this.renderPatterns(delta);
 		//draw background

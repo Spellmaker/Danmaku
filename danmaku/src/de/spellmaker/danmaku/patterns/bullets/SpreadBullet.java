@@ -63,10 +63,6 @@ public class SpreadBullet implements Pattern {
 					}
 				}
 				it = listeners.iterator();
-				//while(it.hasNext()){
-				//	it.next().patternEnded(this);
-				//}
-				//active = false;
 			}
 			
 			

@@ -11,15 +11,15 @@ import de.spellmaker.danmaku.patterns.PatternListener;
 public class VectorBullet implements Pattern {
 	private TextureRegion image;
 	private CollisionObject hitbox;
-	private int vx;
-	private int vy;
+	private float vx;
+	private float vy;
 	private boolean active;
 	
-	public VectorBullet(int x, int y, int vx, int vy){
-		hitbox = new CollisionObject(x, y, 8, 8, 16, 16);
+	public VectorBullet(float f, float g, float h, float i){
+		hitbox = new CollisionObject(f, g, 8, 8, 16, 16);
 		image = new TextureRegion(DataManager.getManager().graphics.bullets, 0, 0, 32, 32);
-		this.vx = vx;
-		this.vy = vy;
+		this.vx = h;
+		this.vy = i;
 		this.active = true;
 	}
 	
