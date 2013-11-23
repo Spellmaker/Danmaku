@@ -8,10 +8,10 @@ import com.badlogic.gdx.math.Vector2;
 
 import de.spellmaker.danmaku.DataManager;
 import de.spellmaker.danmaku.characters.CollisionObject;
+import de.spellmaker.danmaku.level.LevelHandler;
 import de.spellmaker.danmaku.patterns.Pattern;
 import de.spellmaker.danmaku.patterns.PatternListener;
 import de.spellmaker.danmaku.patterns.bullets.VectorBullet;
-import de.spellmaker.danmaku.screens.LevelScreen;
 
 public class BasicFairy implements Pattern {
 	private TextureRegion image;
@@ -59,8 +59,8 @@ public class BasicFairy implements Pattern {
 				if(timer >= bullettimer){
 					System.out.println("bullet created");
 					timer = 0;
-					float posx = LevelScreen.getPlayer().getX();
-					float posy = LevelScreen.getPlayer().getY();
+					float posx = LevelHandler.getPlayer().getX();
+					float posy = LevelHandler.getPlayer().getY();
 					
 					Vector2 vec = new Vector2(posx - hitbox.getX(), posy - hitbox.getY());
 					vec.div(vec.len()).mul(bulletspeed);

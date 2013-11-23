@@ -2,6 +2,7 @@ package de.spellmaker.danmaku.level;
 
 import de.spellmaker.danmaku.patterns.PatternListener;
 
+
 /**
  * Basic interface for levels
  * A level triggers timing based events by
@@ -11,7 +12,11 @@ import de.spellmaker.danmaku.patterns.PatternListener;
  * @author Spellmaker
  *
  */
-public interface DanmakuLevel extends PatternListener {
+public interface DanmakuLevel extends PatternListener{
+	/**
+	 * Starts the pattern
+	 */
+	public void start(LevelHandler handler);
 	/**
 	 * Processes a step in the game world
 	 * @param delta The amount of time passed
@@ -23,4 +28,13 @@ public interface DanmakuLevel extends PatternListener {
 	 * @return The name of the level
 	 */
 	public String getName();
+	/**
+	 * Renders the current Level
+	 * @param delta the time passed
+	 */
+	public void renderLevel(float delta);
+	/**
+	 * Renders the hitboxes
+	 */
+	public void renderHitboxes();
 }
