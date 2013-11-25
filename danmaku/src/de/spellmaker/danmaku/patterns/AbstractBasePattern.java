@@ -14,11 +14,12 @@ import de.spellmaker.danmaku.timing.Timer;
  * @author Spellmaker
  *
  */
-public abstract class BasePattern implements Pattern, PatternListener, TimerListener {
+public abstract class AbstractBasePattern implements Pattern, PatternListener, TimerListener {
 	private ArrayList<PatternListener> listeners;
 	private ArrayList<Pattern> patterns;
 	private ArrayList<Timer> timers;
 	private boolean isAlive;
+	private int id;
 
 	/**
 	 * Process a step of length d of this pattern. Pattern specific
@@ -71,11 +72,12 @@ public abstract class BasePattern implements Pattern, PatternListener, TimerList
 		this.timers.add(new Timer(offset, time, id, this));
 	}
 	
-	public BasePattern(){
+	public AbstractBasePattern(){
 		listeners = new ArrayList<PatternListener>();
 		patterns = new ArrayList<Pattern>();
 		timers = new ArrayList<Timer>();
 		isAlive = true;
+		id = -1;
 	}
 	
 	@Override
@@ -86,7 +88,7 @@ public abstract class BasePattern implements Pattern, PatternListener, TimerList
 
 	@Override
 	public void render(float d) {
-		if(isAlive){
+		if(isAlive && id >= 0){
 			//process pattern specific steps
 			step(d);
 			//render subpatterns
@@ -114,15 +116,17 @@ public abstract class BasePattern implements Pattern, PatternListener, TimerList
 
 	@Override
 	public boolean isAlive() {
-		return isAlive;
+		return isAlive || (id < 0);
 	}
 
 	@Override
 	public void renderHitboxes() {
-		for(int i = 0; i < patterns.size(); i++){
-			patterns.get(i).renderHitboxes();
+		if(id >= 0){
+			for(int i = 0; i < patterns.size(); i++){
+				patterns.get(i).renderHitboxes();
+			}
+			patternHitbox();
 		}
-		patternHitbox();
 	}
 
 	@Override
@@ -137,10 +141,21 @@ public abstract class BasePattern implements Pattern, PatternListener, TimerList
 	
 	@Override
 	public boolean collidesWith(CollisionObject rec) {
+		if(id < 0) return false;
 		for(int i = 0; i < patterns.size(); i++){
 			if(patterns.get(i).collidesWith(rec)) return true;
 		}
 		return collision(rec);
 	}
 
+	@Override
+	public void start(int id){
+		if(id < 0) throw new IllegalArgumentException("id has to be positive");
+		this.id = id;
+	}
+	
+	@Override
+	public int getID(){
+		return this.id;
+	}
 }

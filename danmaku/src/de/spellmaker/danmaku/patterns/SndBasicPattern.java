@@ -3,7 +3,7 @@ package de.spellmaker.danmaku.patterns;
 import de.spellmaker.danmaku.characters.CollisionObject;
 import de.spellmaker.danmaku.patterns.familiars.SndbasicFairy;
 
-public class SndBasicPattern extends BasePattern {
+public class SndBasicPattern extends AbstractBasePattern {
 	public SndBasicPattern(){
 		addTimer(3, 0);
 		addTimer(1.5f, 3, 1);

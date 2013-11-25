@@ -1,4 +1,4 @@
-package de.spellmaker.danmaku.patterns.bullets;
+package de.spellmaker.danmaku.old;
 
 import java.util.ArrayList;
 import java.util.Iterator;

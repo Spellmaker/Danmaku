@@ -1,15 +1,17 @@
-package de.spellmaker.danmaku.patterns;
+package de.spellmaker.danmaku.old;
 
 import java.util.ArrayList;
 
 import de.spellmaker.danmaku.characters.CollisionObject;
-import de.spellmaker.danmaku.patterns.familiars.BasicFairy;
+import de.spellmaker.danmaku.patterns.Pattern;
+import de.spellmaker.danmaku.patterns.PatternListener;
 
 public class BasicPattern implements Pattern, PatternListener {
 	private ArrayList<PatternListener> listeners;
 	private ArrayList<Pattern> pattern;
 	private float timer;
 	private boolean tick;
+	private int id;
 	
 	public BasicPattern(){
 		listeners = new ArrayList<PatternListener>();
@@ -22,24 +24,24 @@ public class BasicPattern implements Pattern, PatternListener {
 		pattern.get(0).addListener(this);
 		timer = 0;
 		tick = true;
+		id = -1;
 	}
 	
 	@Override
 	public void render(float d) {
-		//bullet.render(d);
-		//burst1.render(d);
-		//burst2.render(d);
-		for(int i = 0; i < pattern.size(); i++) pattern.get(i).render(d);
-		timer += d;
-		if(timer >= 1.5){
-			timer = 0;
-			BasicFairy bf;
-			if(tick) bf = new BasicFairy(500, 100, 250, 1f);
-			else bf = new BasicFairy(500, 100, 100, 0.5f);
-			tick = !tick;
-			bf.addListener(this);
-			pattern.add(bf);
-			
+		if(id >= 0){
+			for(int i = 0; i < pattern.size(); i++) pattern.get(i).render(d);
+			timer += d;
+			if(timer >= 1.5){
+				timer = 0;
+				BasicFairy bf;
+				if(tick) bf = new BasicFairy(500, 100, 250, 1f);
+				else bf = new BasicFairy(500, 100, 100, 0.5f);
+				tick = !tick;
+				bf.addListener(this);
+				pattern.add(bf);
+				
+			}
 		}
 	}
 
@@ -65,17 +67,23 @@ public class BasicPattern implements Pattern, PatternListener {
 
 	@Override
 	public boolean collidesWith(CollisionObject rec) {
+		if(id < 0) return false;
+		
 		for(int i = 0; i < pattern.size(); i++) if(pattern.get(i).collidesWith(rec)) return true;
 		return false;
 	}
 
 	@Override
 	public void renderHitboxes() {
-		for(int i = 0; i < pattern.size(); i++) pattern.get(i).renderHitboxes();
+		if(id >= 0){
+			for(int i = 0; i < pattern.size(); i++) pattern.get(i).renderHitboxes();
+		}
 	}
 
 	@Override
 	public boolean isAlive() {
+		if(id < 0) return true;
+		
 		for(int i = 0; i < pattern.size(); i++){
 			if(pattern.get(i).isAlive()) return true;
 		}
@@ -85,6 +93,17 @@ public class BasicPattern implements Pattern, PatternListener {
 	@Override
 	public void patternCreated(Pattern p) {
 		pattern.add(p);
+	}
+
+	@Override
+	public void start(int id) {
+		if(id < 0) throw new IllegalArgumentException("id needs to be positive");
+		this.id = id;
+	}
+
+	@Override
+	public int getID() {
+		return id;
 	}
 
 }

@@ -1,6 +1,5 @@
 package de.spellmaker.danmaku.patterns.familiars;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
@@ -8,20 +7,16 @@ import de.spellmaker.danmaku.DataManager;
 import de.spellmaker.danmaku.characters.CollisionObject;
 import de.spellmaker.danmaku.level.LevelHandler;
 import de.spellmaker.danmaku.old.VectorBullet;
-import de.spellmaker.danmaku.patterns.AbstractBasePattern;
+import de.spellmaker.danmaku.patterns.AbstractDisplayablePattern;
 
-public class SndbasicFairy extends AbstractBasePattern {
-	private TextureRegion image;
-	private CollisionObject hitbox;
+public class AnBasicFairy extends AbstractDisplayablePattern {
 	private boolean entered;
 	private int movdir; 
 	private float bulletspeed;
 	private boolean active;
-
-	public SndbasicFairy(int y, int movdir, float bulletspeed, float bullettimer){
+	
+	public AnBasicFairy(int y, int movdir, float bulletspeed, float bullettimer){
 		super();
-		hitbox = new CollisionObject(DataManager.leftborder - 32, y, 8, 8, 16, 16);
-		image = new TextureRegion(DataManager.getManager().graphics.characters, 32, 0, 32, 32);
 		
 		entered = false;
 		this.movdir = movdir;
@@ -29,15 +24,17 @@ public class SndbasicFairy extends AbstractBasePattern {
 		this.active = true;
 		
 		this.addTimer(bullettimer, 0);
+		
+
+		hitbox = new CollisionObject(DataManager.leftborder - 32, y, 8, 8, 16, 16);
+		image = new TextureRegion(DataManager.getManager().graphics.characters, 32, 0, 32, 32);
 	}
-	
+
 	@Override
-	protected void step(float d) {
+	protected void stepPattern(float d) {
 		//movement
 		hitbox.setX(hitbox.getX() + movdir * d);
-		//draw texture
-		SpriteBatch batch = DataManager.getManager().batch;
-		batch.draw(image, hitbox.getX(), hitbox.getY());
+
 		//handle enter and stuff
 		if(hitbox.getX() <= DataManager.leftborder ||  hitbox.getX() >= DataManager.rightborder){
 			if(entered){
@@ -47,7 +44,6 @@ public class SndbasicFairy extends AbstractBasePattern {
 		else if(!entered){
 			entered = true;
 		}
-
 	}
 
 	@Override
@@ -56,8 +52,8 @@ public class SndbasicFairy extends AbstractBasePattern {
 	}
 
 	@Override
-	protected boolean collision(CollisionObject rec) {
-		return false;
+	protected boolean hasEnded() {
+		return !active;
 	}
 
 	@Override
@@ -86,14 +82,5 @@ public class SndbasicFairy extends AbstractBasePattern {
 			}
 		}
 	}
-	
-	@Override
-	protected boolean hasEnded() {
-		return !active;
-	}
 
-	@Override
-	protected void patternHitbox() {
-		hitbox.render();
-	}
 }

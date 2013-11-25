@@ -11,6 +11,17 @@ import de.spellmaker.danmaku.characters.CollisionObject;
  */
 public interface Pattern {
 	/**
+	 * Starts the pattern by giving it an id.
+	 * Id needs to be positive
+	 * @param id The id of the pattern
+	 */
+	public void start(int id);
+	/**
+	 * Method to find out the pattern id
+	 * @return The pattern id
+	 */
+	public int getID();
+	/**
 	 * Draw the pattern on screen
 	 * this will draw all bullets and effects belonging to this pattern
 	 * @param d The time passed since the last render

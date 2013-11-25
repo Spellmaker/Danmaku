@@ -1,31 +1,38 @@
-package de.spellmaker.danmaku.patterns.bullets;
+package de.spellmaker.danmaku.old;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.spellmaker.danmaku.DataManager;
+import de.spellmaker.danmaku.Options;
 import de.spellmaker.danmaku.characters.CollisionObject;
 import de.spellmaker.danmaku.patterns.Pattern;
 import de.spellmaker.danmaku.patterns.PatternListener;
 
-public class BasicBullet implements Pattern {
+public class VectorBullet implements Pattern {
 	private TextureRegion image;
 	private CollisionObject hitbox;
+	private float vx;
+	private float vy;
 	private boolean active;
 	
-	public BasicBullet(int x, int y){
-		hitbox = new CollisionObject(x, y, 8, 8, 16, 16);
+	public VectorBullet(float f, float g, float h, float i){
+		hitbox = new CollisionObject(f, g, 8, 8, 16, 16);
 		image = new TextureRegion(DataManager.getManager().graphics.bullets, 0, 0, 32, 32);
-		active = true;
+		this.vx = h;
+		this.vy = i;
+		this.active = true;
 	}
 	
 	@Override
 	public void render(float d) {
 		if(active){
-			hitbox.setY(hitbox.getY() - d * 50);
+			hitbox.setX(hitbox.getX() + d * this.vx);
+			hitbox.setY(hitbox.getY() + d * this.vy);
 			
 			SpriteBatch batch = DataManager.getManager().batch;
 			batch.draw(image, hitbox.getX(), hitbox.getY());
-			active = !(hitbox.getY() <= 0);
+			
+			active = !((hitbox.getY() <= 0 || hitbox.getY() >= Options.screen_height || hitbox.getX() <= DataManager.leftborder || hitbox.getX() >= DataManager.rightborder));
 		}
 	}
 
@@ -42,7 +49,6 @@ public class BasicBullet implements Pattern {
 	@Override
 	public void renderHitboxes() {
 		this.hitbox.render();
-		
 	}
 
 	@Override

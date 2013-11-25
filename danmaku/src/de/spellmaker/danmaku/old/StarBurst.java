@@ -1,4 +1,4 @@
-package de.spellmaker.danmaku.patterns;
+package de.spellmaker.danmaku.old;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,10 +6,11 @@ import java.util.Iterator;
 import com.badlogic.gdx.math.Vector2;
 
 import de.spellmaker.danmaku.characters.CollisionObject;
+import de.spellmaker.danmaku.patterns.Pattern;
+import de.spellmaker.danmaku.patterns.PatternListener;
 import de.spellmaker.danmaku.patterns.bullets.Bullet;
-import de.spellmaker.danmaku.patterns.bullets.SpreadBullet;
 
-public class StarBurst implements Bullet, PatternListener {
+public class StarBurst implements Pattern, PatternListener {
 	private ArrayList<Pattern> bullets;
 	
 	public StarBurst(int x, int y){

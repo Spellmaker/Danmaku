@@ -1,4 +1,4 @@
-package de.spellmaker.danmaku.patterns;
+package de.spellmaker.danmaku.old;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,7 +6,8 @@ import java.util.Iterator;
 import com.badlogic.gdx.math.Vector2;
 
 import de.spellmaker.danmaku.characters.CollisionObject;
-import de.spellmaker.danmaku.patterns.bullets.VectorBullet;
+import de.spellmaker.danmaku.patterns.Pattern;
+import de.spellmaker.danmaku.patterns.PatternListener;
 
 public class RotatingStarBurst implements Pattern {
 	private ArrayList<VectorBullet> bullets;
@@ -15,6 +16,7 @@ public class RotatingStarBurst implements Pattern {
 	private int x;
 	private int y;
 	private int rot;
+	private int id;
 	
 	private int counter;
 	
@@ -97,5 +99,17 @@ public class RotatingStarBurst implements Pattern {
 	@Override
 	public void removeListener(PatternListener pl) {
 		//do nothing
+	}
+
+	@Override
+	public void start(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -6,37 +6,32 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-
 import de.spellmaker.danmaku.DataManager;
 import de.spellmaker.danmaku.Options;
 import de.spellmaker.danmaku.characters.Player;
-import de.spellmaker.danmaku.patterns.Pattern;
 
 public class LevelHandler {
 	private ArrayList<DanmakuLevel> levels;
-	private Texture background;
 	private OrthographicCamera camera;
-	private ArrayList<Pattern> patterns;
 	private static Player player;
 	
 	private enum LevelState{
 		LEVEL,
 		SCORE,
-		NEXT
+		NEXT,
+		FINISHED
 	}
 	
 	private LevelState state;
 	
 	public LevelHandler(){
-		background = DataManager.getManager().graphics.levelbackground;
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, Options.screen_width, Options.screen_height);
-		patterns = new ArrayList<Pattern>();		
+		camera.setToOrtho(false, Options.screen_width, Options.screen_height);	
 		player = new Player();
 		levels = new ArrayList<DanmakuLevel>();
+		state = LevelState.FINISHED;
 		//add levels here
-		
+		levels.add(new TestLevel());
 		nextLevel();
 	}
 	
@@ -45,12 +40,12 @@ public class LevelHandler {
 	}
 	
 	public void nextLevel(){
-		state = LevelState.LEVEL;
 		if(levels.size() > 0){
+			state = LevelState.LEVEL;
 			levels.get(0).start(this);
 		}
 		else{
-			//display game end room
+			state = LevelState.FINISHED;
 		}
 	}
 	
@@ -72,6 +67,8 @@ public class LevelHandler {
 				levels.remove(0);
 				nextLevel();
 				break;
+			case FINISHED:
+				//TODO: Handle end of game here
 		}
 	}
 	
@@ -93,33 +90,11 @@ public class LevelHandler {
 		DataManager.getManager().batch.begin();
 		//render player
 		player.render(delta);
-		//render patterns
+		//render the actual level
 		levels.get(0).renderLevel(delta);
-		//draw background
-		DataManager.getManager().batch.draw(background, 0, 0, 0, 0, Options.screen_width, Options.screen_height);
-		DataManager.getManager().batch.end();
-		if(Options.showHitboxes) levels.get(0).renderHitboxes();
-	}
-	
-	private void renderPatterns(float f){
-		for(int i = patterns.size() - 1; i >= 0; i--){
-			Pattern p = patterns.get(i);
-			p.render(f);
-			if(!p.isAlive()){
-				patterns.remove(i);
-			}
+		if(Options.showHitboxes){
+			levels.get(0).renderHitboxes();
+			player.renderHitbox();
 		}
-	}
-	
-	private void renderHitboxes(){
-		for(int i = patterns.size() - 1; i >= 0; i--){
-			Pattern p = patterns.get(i);
-			p.renderHitboxes();
-		}
-		player.renderHitbox();
-	}
-
-	public void addPattern(Pattern p){
-		this.patterns.add(p);
 	}
 }

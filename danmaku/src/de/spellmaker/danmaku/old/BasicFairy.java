@@ -1,4 +1,4 @@
- package de.spellmaker.danmaku.patterns.familiars;
+ package de.spellmaker.danmaku.old;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,6 @@ import de.spellmaker.danmaku.characters.CollisionObject;
 import de.spellmaker.danmaku.level.LevelHandler;
 import de.spellmaker.danmaku.patterns.Pattern;
 import de.spellmaker.danmaku.patterns.PatternListener;
-import de.spellmaker.danmaku.patterns.bullets.VectorBullet;
 
 public class BasicFairy implements Pattern {
 	private TextureRegion image;
